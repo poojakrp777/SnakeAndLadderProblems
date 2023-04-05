@@ -18,22 +18,26 @@ namespace SnakeAndLadder
             const int Snake = 3;
 
             Random random = new Random();
-            int DieRoll = random.Next(1, 7);
-            Console.WriteLine($"Die Rolling : {DieRoll}");
-
-            int options = random.Next(1, 4);
-
-            switch (options)
+            while (Position <= 100)
             {
-                case Ladder:
-                    Position += DieRoll;
-                    break;
-                case Snake:
-                    Position -= DieRoll;
-                    break;
-                case NoPlay:
-                    Console.WriteLine("Position " + Position);
-                    break;
+                int DieRoll = random.Next(1, 7);
+                Console.WriteLine($"Die Rolling : {DieRoll}");
+
+                int options = random.Next(1, 4);
+
+                switch (options)
+                {
+                    case Ladder:
+                        Position += DieRoll;
+                        break;
+                    case Snake:
+                        Position -= DieRoll;
+                        Position = Position < 0 ? 0 : Position;
+                        break;
+                    case NoPlay:
+                        Console.WriteLine("Position " + Position);
+                        break;
+                }
             }
             Console.WriteLine("Position " + Position);
             Console.ReadLine();
